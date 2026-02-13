@@ -1,0 +1,31 @@
+* Wideband RC Voltage Divider
+.options savecurrents
+
+* Main Circuit
+R1 in out 27000.0
+R2 out 0 18000.0
+C1 in out 1.4666666666666668e-11
+C2 out 0 2.2e-11
+
+* Variations
+R1a in outa 27000.0
+R2a outa 0 18000.0
+C1a in outa 2.2e-11
+C2a outa 0 2.2e-11
+
+R1b in outb 27000.0
+R2b outb 0 18000.0
+C1b in outb 7.333333333333334e-12
+C2b outb 0 2.2e-11
+
+V1 in 0 pulse(-0.1 0.1 0 0.1u 0.1u 5u 10u) dc 1 ac 1
+
+.control
+  ac dec 10 1 1G
+  wrdata output_ac.dat v(out) v(outa) v(outb)
+
+  tran 0.01u 30u
+  wrdata output_tran.dat v(out) v(outa) v(outb)
+  quit
+.endc
+.end
